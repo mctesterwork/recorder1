@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33110.190
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "recorder1", "recorder1\recorder1.csproj", "{CC776730-0182-422E-B0BB-48D23A89D910}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CC776730-0182-422E-B0BB-48D23A89D910}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC776730-0182-422E-B0BB-48D23A89D910}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC776730-0182-422E-B0BB-48D23A89D910}.Debug|x64.ActiveCfg = Debug|x64
+		{CC776730-0182-422E-B0BB-48D23A89D910}.Debug|x64.Build.0 = Debug|x64
+		{CC776730-0182-422E-B0BB-48D23A89D910}.Debug|x86.ActiveCfg = Debug|x64
+		{CC776730-0182-422E-B0BB-48D23A89D910}.Debug|x86.Build.0 = Debug|x64
+		{CC776730-0182-422E-B0BB-48D23A89D910}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC776730-0182-422E-B0BB-48D23A89D910}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC776730-0182-422E-B0BB-48D23A89D910}.Release|x64.ActiveCfg = Release|x64
+		{CC776730-0182-422E-B0BB-48D23A89D910}.Release|x64.Build.0 = Release|x64
+		{CC776730-0182-422E-B0BB-48D23A89D910}.Release|x86.ActiveCfg = Release|x86
+		{CC776730-0182-422E-B0BB-48D23A89D910}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B33BFEE6-757D-4820-9939-A1E9A0BD24CD}
+	EndGlobalSection
+EndGlobal
