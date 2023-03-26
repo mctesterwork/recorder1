@@ -70,7 +70,7 @@
             this.cbox_outputDevices.Name = "cbox_outputDevices";
             this.cbox_outputDevices.Size = new System.Drawing.Size(176, 23);
             this.cbox_outputDevices.TabIndex = 3;
-            this.cbox_outputDevices.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
+            this.cbox_outputDevices.SelectedIndexChanged += new System.EventHandler(this.cbox_outputDevices_SelectedIndexChanged);
             // 
             // Form1
             // 
