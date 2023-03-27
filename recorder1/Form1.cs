@@ -1,4 +1,5 @@
 using ScreenRecorderLib;
+using System.Windows.Forms;
 
 namespace recorder1
 {
@@ -91,8 +92,6 @@ namespace recorder1
             this.btn_Record.Enabled = true;
 
         }
-
-        // Stop recording function. TODO: need to make this better using async and cancel token
         private void stopRecording()
         {
             this.btn_Record.Enabled = false;
@@ -100,6 +99,23 @@ namespace recorder1
             this.btn_Record.Text = "RECORD";
             this.btn_Record.Enabled = true;
             isRecording = false;
+        }
+
+        private void Form1_Resize(object sender, EventArgs e)
+        {
+            if (this.WindowState == FormWindowState.Minimized)
+            {
+                Hide();
+                trayIcon.Visible = true;
+                trayIcon.ShowBalloonTip(1000);
+            }
+        }
+
+        private void trayIcon_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            Show();
+            this.WindowState= FormWindowState.Normal;
+            trayIcon.Visible = false;
         }
     }
 }

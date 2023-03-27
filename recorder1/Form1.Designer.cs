@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.btn_Record = new System.Windows.Forms.Button();
             this.cbox_inputDevices = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -38,6 +40,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.btn_Browse = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
+            this.trayIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.SuspendLayout();
             // 
             // btn_Record
@@ -140,6 +143,14 @@
             this.label3.TabIndex = 10;
             this.label3.Text = "...";
             // 
+            // trayIcon
+            // 
+            this.trayIcon.BalloonTipText = "Tiny Screen Recorder is still running, you can restore it by clicking on the tray" +
+    " icon";
+            this.trayIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("trayIcon.Icon")));
+            this.trayIcon.Text = "trayTSR";
+            this.trayIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.trayIcon_MouseDoubleClick);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -160,6 +171,7 @@
             this.Name = "Form1";
             this.Text = "Tiny Screen Recorder";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.Resize += new System.EventHandler(this.Form1_Resize);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -177,5 +189,6 @@
         private Label label2;
         private Button btn_Browse;
         private Label label3;
+        private NotifyIcon trayIcon;
     }
 }
