@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 using ScreenRecorderLib;
 using System.Windows.Forms;
 
+
+// This class is supposed to contain all the recording features, abstracted from the Windows Form code
+
 namespace recorder1
 {
     internal class IRecorder

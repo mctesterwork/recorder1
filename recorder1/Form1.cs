@@ -5,6 +5,7 @@ namespace recorder1
 {
     public partial class Form1 : Form
     {
+        // IRecorder __recorder = new IRecorder();
         private bool isRecording = false;
         private Recorder _rec = Recorder.CreateRecorder();
         public Form1()
@@ -37,7 +38,7 @@ namespace recorder1
         private void getInputDevices()
         {
             // Here we should do the process of getting input devices, we also need a setter function and to return the list
-            var inputDevices = ScreenRecorderLib.Recorder.GetSystemAudioDevices(ScreenRecorderLib.AudioDeviceSource.InputDevices);
+            var inputDevices = Recorder.GetSystemAudioDevices(AudioDeviceSource.InputDevices);
             foreach (var device in inputDevices)
             {
                 cbox_inputDevices.Items.Add(device.FriendlyName);
@@ -49,7 +50,7 @@ namespace recorder1
         private void getOutputDevices()
         {
             // Here we should do the process of getting output devices, we also need a setter function and to return the list
-            var outputDevices = ScreenRecorderLib.Recorder.GetSystemAudioDevices(ScreenRecorderLib.AudioDeviceSource.OutputDevices);
+            var outputDevices = Recorder.GetSystemAudioDevices(AudioDeviceSource.OutputDevices);
             foreach(var device in outputDevices)
             {
                 cbox_outputDevices.Items.Add(device.FriendlyName);
@@ -80,7 +81,7 @@ namespace recorder1
                 },
                 VideoEncoderOptions = new VideoEncoderOptions
                 {
-                    Quality = 100
+                    Quality = 80
                 }
             };
             _rec.SetOptions(opts);
@@ -101,6 +102,7 @@ namespace recorder1
             isRecording = false;
         }
 
+        // This code is for displaying in tray icon when minimized. TODO: Trigger this when recording starts
         private void Form1_Resize(object sender, EventArgs e)
         {
             if (this.WindowState == FormWindowState.Minimized)
@@ -110,7 +112,7 @@ namespace recorder1
                 trayIcon.ShowBalloonTip(1000);
             }
         }
-
+        // This code is for restoring the window from the tray. TODO: Trigger this when recording stops
         private void trayIcon_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             Show();
