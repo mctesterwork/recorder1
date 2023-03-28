@@ -36,7 +36,7 @@
             this.cbox_outputDevices = new System.Windows.Forms.ComboBox();
             this.chbox_Input = new System.Windows.Forms.CheckBox();
             this.chbox_Output = new System.Windows.Forms.CheckBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.chbox_ShowClicks = new System.Windows.Forms.CheckBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btn_Browse = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
@@ -103,15 +103,15 @@
             this.chbox_Output.Text = "Record computer audio";
             this.chbox_Output.UseVisualStyleBackColor = true;
             // 
-            // checkBox1
+            // chbox_ShowClicks
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(214, 70);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(87, 19);
-            this.checkBox1.TabIndex = 7;
-            this.checkBox1.Text = "Show clicks";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.chbox_ShowClicks.AutoSize = true;
+            this.chbox_ShowClicks.Location = new System.Drawing.Point(214, 70);
+            this.chbox_ShowClicks.Name = "chbox_ShowClicks";
+            this.chbox_ShowClicks.Size = new System.Drawing.Size(87, 19);
+            this.chbox_ShowClicks.TabIndex = 7;
+            this.chbox_ShowClicks.Text = "Show clicks";
+            this.chbox_ShowClicks.UseVisualStyleBackColor = true;
             // 
             // label2
             // 
@@ -157,7 +157,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btn_Browse);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.chbox_ShowClicks);
             this.Controls.Add(this.chbox_Output);
             this.Controls.Add(this.chbox_Input);
             this.Controls.Add(this.cbox_outputDevices);
@@ -183,7 +183,7 @@
         private ComboBox cbox_outputDevices;
         private CheckBox chbox_Input;
         private CheckBox chbox_Output;
-        private CheckBox checkBox1;
+        private CheckBox chbox_ShowClicks;
         private Label label2;
         private Button btn_Browse;
         private Label label3;

@@ -19,6 +19,15 @@ namespace recorder1
             string timestamp = DateTime.Now.ToString("yyyy-MM-dd HH-mm-ss");
             string filePath = Path.Combine(Path.GetTempPath(), "TinyScreenRecorder", timestamp, timestamp + ".mp4");
             int quality = 80;
+            bool audioInEnabled = chbox_Input.Checked;
+            bool audioOutEnabled = chbox_Output.Checked;
+            int selectedInputIndex = cbox_inputDevices.SelectedIndex;
+            int selectedOutputIndex = cbox_outputDevices.SelectedIndex;
+            string selectedAudioInput = cbox_inputDevices.Items.Count > 0 ? Recorder.GetSystemAudioDevices(AudioDeviceSource.InputDevices)[selectedInputIndex].DeviceName : "";
+            string selectedAudioOutput = cbox_outputDevices.Items.Count > 0 ? Recorder.GetSystemAudioDevices(AudioDeviceSource.OutputDevices)[selectedOutputIndex].DeviceName : "";
+            bool showingClicks = chbox_ShowClicks.Checked;
+            bool showingPointer = true;
+
 
             // Start / Stop the recording and button toggle
             if (_recorder.RecordingStatus()) 
@@ -31,7 +40,8 @@ namespace recorder1
             else 
             {
                 this.btn_Record.Enabled = false;
-                _recorder.Settings(filePath);
+                _recorder.Settings(filePath, quality, showingClicks, showingPointer, audioInEnabled, audioOutEnabled,
+                    selectedAudioInput, selectedAudioOutput);
                 _recorder.Start();
                 this.btn_Record.Text = "STOP";
                 this.btn_Record.Enabled = true;
@@ -48,15 +58,15 @@ namespace recorder1
 
         private void LoadInputDevices()
         {
-            Dictionary<string, string> inputDevices = _recorder.GetAudioIns();
-            this.cbox_inputDevices.Items.AddRange(inputDevices.Keys.ToArray());
+            List<string> inputDevicesList = _recorder.GetAudioIns();
+            this.cbox_inputDevices.Items.AddRange(inputDevicesList.ToArray());
             this.cbox_inputDevices.SelectedIndex = 0;
         }
 
         private void LoadOutputDevices()
         {
-            Dictionary<string, string> outputDevices = _recorder.GetAudioOuts();
-            this.cbox_outputDevices.Items.AddRange(outputDevices.Keys.ToArray());
+            List<string> outputDevicesList = _recorder.GetAudioOuts();
+            this.cbox_outputDevices.Items.AddRange(outputDevicesList.ToArray());
             this.cbox_outputDevices.SelectedIndex = 0;
         }
 

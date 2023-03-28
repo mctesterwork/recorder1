@@ -43,6 +43,7 @@ namespace recorder1
             {
                 AudioOptions = new AudioOptions
                 {
+                    IsAudioEnabled = true, // If this is disabled, all audio is disabled. So careful with this setting
                     IsInputDeviceEnabled = this.recordAudioInput,
                     IsOutputDeviceEnabled = this.recordAudioOutput,
                     AudioInputDevice = this.AudioInName,
@@ -108,26 +109,26 @@ namespace recorder1
             this.rec = null;
         }
 
-        public Dictionary<string, string> GetAudioIns()
+        public List<string> GetAudioIns()
         {
-            Dictionary<string, string> inputDevicesList = new Dictionary<string, string>();
-            var devices = Recorder.GetSystemAudioDevices(AudioDeviceSource.InputDevices);
-            foreach (var device in devices)
+            List<string> result = new List<string>();
+            var inputDevices = Recorder.GetSystemAudioDevices(AudioDeviceSource.InputDevices);
+            foreach ( var device in inputDevices )
             {
-                inputDevicesList.Add(device.FriendlyName, device.DeviceName);
+                result.Add(device.FriendlyName);
             }
-            return inputDevicesList;
+            return result;
         }
 
-        public Dictionary<string, string> GetAudioOuts ()
+        public List<string> GetAudioOuts ()
         {
-            Dictionary<string, string> outputDevicesList = new Dictionary<string, string>();
-            var devices = Recorder.GetSystemAudioDevices(AudioDeviceSource.OutputDevices);
-            foreach (var device in devices)
+            List<string> result = new List<string>();
+            var outputDevices = Recorder.GetSystemAudioDevices(AudioDeviceSource.OutputDevices);
+            foreach ( var device in outputDevices) 
             {
-                outputDevicesList.Add(device.FriendlyName, device.DeviceName);
+                result.Add( device.FriendlyName );
             }
-            return outputDevicesList;
+            return result;
         }
 
     }
