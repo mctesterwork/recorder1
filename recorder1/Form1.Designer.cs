@@ -64,7 +64,6 @@
             this.cbox_inputDevices.Name = "cbox_inputDevices";
             this.cbox_inputDevices.Size = new System.Drawing.Size(176, 23);
             this.cbox_inputDevices.TabIndex = 1;
-            this.cbox_inputDevices.SelectedIndexChanged += new System.EventHandler(this.cbox_inputDevices_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -83,7 +82,6 @@
             this.cbox_outputDevices.Name = "cbox_outputDevices";
             this.cbox_outputDevices.Size = new System.Drawing.Size(176, 23);
             this.cbox_outputDevices.TabIndex = 3;
-            this.cbox_outputDevices.SelectedIndexChanged += new System.EventHandler(this.cbox_outputDevices_SelectedIndexChanged);
             // 
             // chbox_Input
             // 

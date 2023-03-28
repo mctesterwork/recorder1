@@ -1,13 +1,13 @@
+using Microsoft.VisualBasic.ApplicationServices;
 using ScreenRecorderLib;
+using System.Reflection;
 using System.Windows.Forms;
 
 namespace recorder1
 {
     public partial class Form1 : Form
     {
-        // IRecorder __recorder = new IRecorder();
-        private bool isRecording = false;
-        private Recorder _rec = Recorder.CreateRecorder();
+        IRecorder _recorder = new IRecorder();
         public Form1()
         {
             InitializeComponent();
@@ -15,91 +15,49 @@ namespace recorder1
 
         private void btn_Record_Click(object sender, EventArgs e)
         {
-            if (isRecording == false)
+            // Settings for the recording paramters
+            string timestamp = DateTime.Now.ToString("yyyy-MM-dd HH-mm-ss");
+            string filePath = Path.Combine(Path.GetTempPath(), "TinyScreenRecorder", timestamp, timestamp + ".mp4");
+            int quality = 80;
+
+            // Start / Stop the recording and button toggle
+            if (_recorder.RecordingStatus()) 
             {
-                startRecording();
+                this.btn_Record.Enabled = false;
+                _recorder.Stop();
+                this.btn_Record.Text = "RECORD";
+                this.btn_Record.Enabled = true;
             }
-            else { 
-                stopRecording();
+            else 
+            {
+                this.btn_Record.Enabled = false;
+                _recorder.Settings(filePath);
+                _recorder.Start();
+                this.btn_Record.Text = "STOP";
+                this.btn_Record.Enabled = true;
             }
-        }
-
-        private void cbox_inputDevices_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
+            
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            getInputDevices();
-            getOutputDevices();
+            // Populate the comboboxes with available device names
+            LoadInputDevices();
+            LoadOutputDevices();
         }
 
-        private void getInputDevices()
+        private void LoadInputDevices()
         {
-            // Here we should do the process of getting input devices, we also need a setter function and to return the list
-            var inputDevices = Recorder.GetSystemAudioDevices(AudioDeviceSource.InputDevices);
-            foreach (var device in inputDevices)
-            {
-                cbox_inputDevices.Items.Add(device.FriendlyName);
-            }
-            // Set default input
+            Dictionary<string, string> inputDevices = _recorder.GetAudioIns();
+            this.cbox_inputDevices.Items.AddRange(inputDevices.Keys.ToArray());
             this.cbox_inputDevices.SelectedIndex = 0;
         }
 
-        private void getOutputDevices()
+        private void LoadOutputDevices()
         {
-            // Here we should do the process of getting output devices, we also need a setter function and to return the list
-            var outputDevices = Recorder.GetSystemAudioDevices(AudioDeviceSource.OutputDevices);
-            foreach(var device in outputDevices)
-            {
-                cbox_outputDevices.Items.Add(device.FriendlyName);
-            }
-            // Set default output
+            Dictionary<string, string> outputDevices = _recorder.GetAudioOuts();
+            this.cbox_outputDevices.Items.AddRange(outputDevices.Keys.ToArray());
             this.cbox_outputDevices.SelectedIndex = 0;
-        }
-
-        private void cbox_outputDevices_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        // Start recording function
-        private void startRecording()
-        {
-            // First we need to set the recorder options
-            this.btn_Record.Enabled = false;
-            var opts = new RecorderOptions
-            {
-                AudioOptions = new AudioOptions
-                {
-                    AudioInputDevice = Recorder.GetSystemAudioDevices(AudioDeviceSource.InputDevices).First().DeviceName,
-                    AudioOutputDevice = null,
-                    IsAudioEnabled = true,
-                    IsInputDeviceEnabled = true,
-                    IsOutputDeviceEnabled = false,
-                },
-                VideoEncoderOptions = new VideoEncoderOptions
-                {
-                    Quality = 80
-                }
-            };
-            _rec.SetOptions(opts);
-            string timestamp = DateTime.Now.ToString("yyyy-MM-dd HH-mm-ss");
-            string filePath = Path.Combine(Path.GetTempPath(), "ScreenRecorder", timestamp, timestamp + ".mp4");
-            _rec.Record(filePath);
-            isRecording = true;
-            this.btn_Record.Text = "STOP";
-            this.btn_Record.Enabled = true;
-
-        }
-        private void stopRecording()
-        {
-            this.btn_Record.Enabled = false;
-            _rec.Stop();
-            this.btn_Record.Text = "RECORD";
-            this.btn_Record.Enabled = true;
-            isRecording = false;
         }
 
         // This code is for displaying in tray icon when minimized. TODO: Trigger this when recording starts
