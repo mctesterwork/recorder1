@@ -136,7 +136,7 @@
             this.btn_Browse.Name = "btn_Browse";
             this.btn_Browse.Size = new System.Drawing.Size(75, 23);
             this.btn_Browse.TabIndex = 9;
-            this.btn_Browse.Text = "browse";
+            this.btn_Browse.Text = "Browse";
             this.btn_Browse.UseVisualStyleBackColor = true;
             this.btn_Browse.Click += new System.EventHandler(this.btn_Browse_Click);
             // 
