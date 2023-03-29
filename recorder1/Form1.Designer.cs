@@ -46,6 +46,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
+            this.chbox_ShowPointer = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.tbar_Quality)).BeginInit();
             this.SuspendLayout();
             // 
@@ -195,11 +196,22 @@
             this.label6.TabIndex = 14;
             this.label6.Text = "Mouse settings";
             // 
+            // chbox_ShowPointer
+            // 
+            this.chbox_ShowPointer.AutoSize = true;
+            this.chbox_ShowPointer.Location = new System.Drawing.Point(104, 203);
+            this.chbox_ShowPointer.Name = "chbox_ShowPointer";
+            this.chbox_ShowPointer.Size = new System.Drawing.Size(96, 19);
+            this.chbox_ShowPointer.TabIndex = 15;
+            this.chbox_ShowPointer.Text = "Show Pointer";
+            this.chbox_ShowPointer.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(397, 245);
+            this.Controls.Add(this.chbox_ShowPointer);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -218,6 +230,7 @@
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "Tiny Screen Recorder";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.Resize += new System.EventHandler(this.Form1_Resize);
             ((System.ComponentModel.ISupportInitialize)(this.tbar_Quality)).EndInit();
@@ -244,5 +257,6 @@
         private Label label5;
         private Label label6;
         private FolderBrowserDialog folderBrowserDialog;
+        private CheckBox chbox_ShowPointer;
     }
 }
