@@ -8,6 +8,7 @@ namespace recorder1
     public partial class Form1 : Form
     {
         IRecorder _recorder = new IRecorder();
+        string selectedPath = "";
         public Form1()
         {
             InitializeComponent();
@@ -17,8 +18,13 @@ namespace recorder1
         {
             // Settings for the recording paramters
             string timestamp = DateTime.Now.ToString("yyyy-MM-dd HH-mm-ss");
-            string filePath = Path.Combine(Path.GetTempPath(), "TinyScreenRecorder", timestamp, timestamp + ".mp4");
-            int quality = 80;
+            string tempPath = Path.GetTempPath();
+            string filePath = Path.Combine(tempPath, "TinyScreenRecorder", timestamp, timestamp + ".mp4");
+            if (Directory.Exists(selectedPath))
+            {
+                filePath = Path.Combine(selectedPath, "TinyScreenRecorder", timestamp, timestamp + ".mp4");
+            }
+            int quality = tbar_Quality.Value * 10;
             bool audioInEnabled = chbox_Input.Checked;
             bool audioOutEnabled = chbox_Output.Checked;
             int selectedInputIndex = cbox_inputDevices.SelectedIndex;
@@ -86,6 +92,16 @@ namespace recorder1
             Show();
             this.WindowState= FormWindowState.Normal;
             trayIcon.Visible = false;
+        }
+
+        private void btn_Browse_Click(object sender, EventArgs e)
+        {
+            DialogResult result = folderBrowserDialog.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                selectedPath = folderBrowserDialog.SelectedPath;
+                label_SelectedPath.Text = selectedPath;
+            }
         }
     }
 }

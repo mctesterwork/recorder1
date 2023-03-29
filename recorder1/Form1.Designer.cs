@@ -39,8 +39,14 @@
             this.chbox_ShowClicks = new System.Windows.Forms.CheckBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btn_Browse = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
+            this.label_SelectedPath = new System.Windows.Forms.Label();
             this.trayIcon = new System.Windows.Forms.NotifyIcon(this.components);
+            this.tbar_Quality = new System.Windows.Forms.TrackBar();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
+            ((System.ComponentModel.ISupportInitialize)(this.tbar_Quality)).BeginInit();
             this.SuspendLayout();
             // 
             // btn_Record
@@ -49,7 +55,7 @@
             this.btn_Record.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_Record.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btn_Record.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.btn_Record.Location = new System.Drawing.Point(214, 105);
+            this.btn_Record.Location = new System.Drawing.Point(214, 161);
             this.btn_Record.Name = "btn_Record";
             this.btn_Record.Size = new System.Drawing.Size(171, 72);
             this.btn_Record.TabIndex = 0;
@@ -71,14 +77,14 @@
             this.label1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label1.Location = new System.Drawing.Point(12, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(111, 15);
+            this.label1.Size = new System.Drawing.Size(109, 15);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Recording Devices";
+            this.label1.Text = "Recording devices";
             // 
             // cbox_outputDevices
             // 
             this.cbox_outputDevices.FormattingEnabled = true;
-            this.cbox_outputDevices.Location = new System.Drawing.Point(12, 125);
+            this.cbox_outputDevices.Location = new System.Drawing.Point(12, 135);
             this.cbox_outputDevices.Name = "cbox_outputDevices";
             this.cbox_outputDevices.Size = new System.Drawing.Size(176, 23);
             this.cbox_outputDevices.TabIndex = 3;
@@ -96,7 +102,7 @@
             // chbox_Output
             // 
             this.chbox_Output.AutoSize = true;
-            this.chbox_Output.Location = new System.Drawing.Point(12, 100);
+            this.chbox_Output.Location = new System.Drawing.Point(12, 110);
             this.chbox_Output.Name = "chbox_Output";
             this.chbox_Output.Size = new System.Drawing.Size(151, 19);
             this.chbox_Output.TabIndex = 6;
@@ -106,7 +112,7 @@
             // chbox_ShowClicks
             // 
             this.chbox_ShowClicks.AutoSize = true;
-            this.chbox_ShowClicks.Location = new System.Drawing.Point(214, 70);
+            this.chbox_ShowClicks.Location = new System.Drawing.Point(11, 203);
             this.chbox_ShowClicks.Name = "chbox_ShowClicks";
             this.chbox_ShowClicks.Size = new System.Drawing.Size(87, 19);
             this.chbox_ShowClicks.TabIndex = 7;
@@ -125,21 +131,22 @@
             // 
             // btn_Browse
             // 
-            this.btn_Browse.Location = new System.Drawing.Point(310, 38);
+            this.btn_Browse.Location = new System.Drawing.Point(214, 37);
             this.btn_Browse.Name = "btn_Browse";
             this.btn_Browse.Size = new System.Drawing.Size(75, 23);
             this.btn_Browse.TabIndex = 9;
             this.btn_Browse.Text = "browse";
             this.btn_Browse.UseVisualStyleBackColor = true;
+            this.btn_Browse.Click += new System.EventHandler(this.btn_Browse_Click);
             // 
-            // label3
+            // label_SelectedPath
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(214, 42);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(16, 15);
-            this.label3.TabIndex = 10;
-            this.label3.Text = "...";
+            this.label_SelectedPath.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label_SelectedPath.Location = new System.Drawing.Point(214, 66);
+            this.label_SelectedPath.Name = "label_SelectedPath";
+            this.label_SelectedPath.Size = new System.Drawing.Size(171, 15);
+            this.label_SelectedPath.TabIndex = 10;
+            this.label_SelectedPath.Text = "...";
             // 
             // trayIcon
             // 
@@ -149,12 +156,55 @@
             this.trayIcon.Text = "trayTSR";
             this.trayIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.trayIcon_MouseDoubleClick);
             // 
+            // tbar_Quality
+            // 
+            this.tbar_Quality.LargeChange = 3;
+            this.tbar_Quality.Location = new System.Drawing.Point(214, 113);
+            this.tbar_Quality.Minimum = 3;
+            this.tbar_Quality.Name = "tbar_Quality";
+            this.tbar_Quality.Size = new System.Drawing.Size(91, 45);
+            this.tbar_Quality.TabIndex = 11;
+            this.tbar_Quality.Value = 8;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label4.Location = new System.Drawing.Point(214, 89);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(79, 15);
+            this.label4.TabIndex = 12;
+            this.label4.Text = "Video quality";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(300, 124);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(33, 15);
+            this.label5.TabIndex = 13;
+            this.label5.Text = "max.";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label6.Location = new System.Drawing.Point(12, 175);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(91, 15);
+            this.label6.TabIndex = 14;
+            this.label6.Text = "Mouse settings";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(397, 189);
-            this.Controls.Add(this.label3);
+            this.ClientSize = new System.Drawing.Size(397, 245);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.tbar_Quality);
+            this.Controls.Add(this.label_SelectedPath);
             this.Controls.Add(this.btn_Browse);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.chbox_ShowClicks);
@@ -170,6 +220,7 @@
             this.Text = "Tiny Screen Recorder";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.Resize += new System.EventHandler(this.Form1_Resize);
+            ((System.ComponentModel.ISupportInitialize)(this.tbar_Quality)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -186,7 +237,12 @@
         private CheckBox chbox_ShowClicks;
         private Label label2;
         private Button btn_Browse;
-        private Label label3;
+        private Label label_SelectedPath;
         private NotifyIcon trayIcon;
+        private TrackBar tbar_Quality;
+        private Label label4;
+        private Label label5;
+        private Label label6;
+        private FolderBrowserDialog folderBrowserDialog;
     }
 }
